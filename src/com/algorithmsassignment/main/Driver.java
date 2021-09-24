@@ -10,14 +10,17 @@ public class Driver {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numberOfCompanies;
-        Company company = new Company();
         int choice;
         CompanyServices companyServices = new CompanyServices();
 
+        Company[] companies;
+
         System.out.print("Enter the number of companies: ");
         numberOfCompanies = scanner.nextInt();
+        companies = new Company[numberOfCompanies];
+        
         for (int i = 0; i < numberOfCompanies; i++) {
-            company.companyDetails(i);
+            companies[i] = companyServices.newCompany();
         }
 
         do {
