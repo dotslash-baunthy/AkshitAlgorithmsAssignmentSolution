@@ -1,25 +1,46 @@
 package com.algorithmsassignment.services;
 
 public class CompanyServices {
-    public int[] stockPricesInAscending() {
+
+    public void companyOperations(int operationNumber) {
+
+        switch(operationNumber) {
+            case 0:
+                return;
+            case 1:
+            stockPricesInAscending();
+            case 2:
+                stockPricesInDescending();
+            case 3:
+                numberOfCompaniesWithRaisedStock();
+            case 4:
+                numberOfCompaniesWithDeclinedStock();
+            case 5:
+                searchForSpecificStockPrice();
+            default:
+                System.out.println("Use an option between 1 to 5");
+        }
+    }
+
+    private int[] stockPricesInAscending() {
         int[] ascendingArray = { 0 };
         return ascendingArray;
     }
 
-    public int[] stockPricesInDescending() {
+    private int[] stockPricesInDescending() {
         int[] descendingArray = { 0 };
         return descendingArray;
     }
 
-    public int numberOfCompaniesWithRaisedStock() {
+    private int numberOfCompaniesWithRaisedStock() {
         return 1;
     }
 
-    public int numberOfCompaniesWithDeclinedStock() {
+    private int numberOfCompaniesWithDeclinedStock() {
         return -1;
     }
 
-    public int searchForSpecificStockPrice() {
+    private int searchForSpecificStockPrice() {
         return 0;
     }
 }
