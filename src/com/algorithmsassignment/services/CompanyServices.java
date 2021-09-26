@@ -2,8 +2,6 @@ package com.algorithmsassignment.services;
 
 import java.util.Scanner;
 
-import javax.management.openmbean.OpenDataException;
-
 import com.algorithmsassignment.models.Company;
 
 public class CompanyServices {
@@ -21,61 +19,44 @@ public class CompanyServices {
     }
 
     public void companyOperations(int choice, Company[] companies, double[] sharePrice, boolean[] stockRoseToday) {
-        
+
         if (choice == 0) {
-                System.exit(0);
-            } else if (choice == 1) {
-                stockPricesInAscending(sharePrice);
-            } else if (choice == 2) {
-                stockPricesInDescending(sharePrice);
-            } else if (choice == 3) {
-                numberOfCompaniesWithRaisedStock(companies);
-            } else if (choice == 4) {
-                numberOfCompaniesWithDeclinedStock(companies);
-            } else if (choice == 5) {
-                searchForSpecificStockPrice();
-            } else {
-                System.out.println("Use an option between 1 to 5");
-            }
+            System.exit(0);
+        } else if (choice == 1) {
+            stockPricesSort(sharePrice, true);
+        } else if (choice == 2) {
+            stockPricesSort(sharePrice, false);
+        } else if (choice == 3) {
+            numberOfCompaniesWithSameStockStatus(companies, true);
+        } else if (choice == 4) {
+            numberOfCompaniesWithSameStockStatus(companies, false);
+        } else if (choice == 5) {
+            searchForSpecificStockPrice();
+        } else {
+            System.out.println("Use an option between 1 to 5");
+        }
     }
 
-    private void stockPricesInAscending(double[] sharePrice) {
+    private void stockPricesSort(double[] sharePrice, boolean isAscending) {
         MergeSort mergeSort = new MergeSort();
         double[] sharePriceTemp = sharePrice;
-        mergeSort.splitArray(sharePriceTemp, 0, sharePrice.length);
+        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, isAscending);
     }
 
-    private int[] stockPricesInDescending(double[] sharePrice) {
-        int[] descendingArray = { 0 };
-        return descendingArray;
-    }
-
-    private void numberOfCompaniesWithRaisedStock(Company[] companies) {
-        int stockRoseTodayCounter = 0;
+    private void numberOfCompaniesWithSameStockStatus(Company[] companies, boolean isRaised) {
+        int counter = 0;
         for (int i = 0; i < companies.length; i++) {
-            if (companies[i].getStockRoseToday()) {
-                stockRoseTodayCounter++;
+            if (isRaised) {
+                if (companies[i].getStockRoseToday()) {
+                    counter++;
+                }
+            } else {
+                if (!companies[i].getStockRoseToday()) {
+                    counter++;
+                }
             }
         }
-        if (stockRoseTodayCounter == 1) {
-            System.out.println(stockRoseTodayCounter + " company had raised stocks");
-        } else {
-            System.out.println(stockRoseTodayCounter + " companies had raised stocks");
-        }
-    }
-
-    private void numberOfCompaniesWithDeclinedStock(Company[] companies) {
-        int stockDeclinedTodayCounter = 0;
-        for (int i = 0; i < companies.length; i++) {
-            if (!companies[i].getStockRoseToday()) {
-                stockDeclinedTodayCounter++;
-            }
-        }
-        if (stockDeclinedTodayCounter == 1) {
-            System.out.println(stockDeclinedTodayCounter + " company had declined stocks");
-        } else {
-            System.out.println(stockDeclinedTodayCounter + " companies had declined stocks");
-        }
+        System.out.println(counter);
     }
 
     private int searchForSpecificStockPrice() {
