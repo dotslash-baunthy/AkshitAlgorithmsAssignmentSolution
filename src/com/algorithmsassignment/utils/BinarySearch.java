@@ -1,44 +1,37 @@
 package com.algorithmsassignment.utils;
 
 public class BinarySearch {
-    // Function to determine if a `target` exists in the sorted array `nums`
-    // or not using a binary search algorithm
     public void binarySearch(double[] stockValues, double searchValue) {
-        // search space is nums[left…right]
+
         int left = 0;
         int right = stockValues.length - 1;
 
-        // loop till the search space is exhausted
+        // while left and right arrays have values in them
         while (left <= right) {
-            // find the mid-value in the search space and
-            // compares it with the target
 
+            // Find lowest closes integer (mid value) and compare with searchValue
             int mid = (left + right) / 2;
 
-            // overflow can happen. Use:
-            // int mid = left + (right - left) / 2;
-            // int mid = right - (right - left) / 2;
-
-            // target is found
+            // If searchValue exists, print and return
             if (searchValue == stockValues[mid]) {
                 System.out.println("Stock of value " + searchValue + " is present");
                 return;
             }
 
-            // discard all elements in the right search space,
-            // including the middle element
+            // searchValue is smaller than the middle element, meaning that it exists on the
+            // left of the search array (since original array is sorted)
             else if (searchValue < stockValues[mid]) {
                 right = mid - 1;
             }
 
-            // discard all elements in the left search space,
-            // including the middle element
+            // searchValue is larger than the middle element, meaning that it exists on the
+            // right of the search array (since original array is sorted)
             else {
                 left = mid + 1;
             }
         }
 
-        // `target` doesn't exist in the array
+        // If searchValue does not exist, print
         System.out.println("Stock of value " + searchValue + " is not present");
     }
 }
