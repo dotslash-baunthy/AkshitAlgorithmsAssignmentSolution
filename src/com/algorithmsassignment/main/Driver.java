@@ -20,15 +20,20 @@ public class Driver {
         numberOfCompanies = scanner.nextInt();
         companies = new Company[numberOfCompanies];
 
+        // Create two array the size of number of companies
+        // These will store the price of stock and the status of the stock individually
         double[] sharePrice = new double[numberOfCompanies];
         boolean[] stockRoseToday = new boolean[numberOfCompanies];
-        
+
         for (int i = 0; i < numberOfCompanies; i++) {
-            companies[i] = companyServices.newCompany((i+1));
+            // Call newCompany function which finally calls a parameterized constructor of
+            // type Company
+            companies[i] = companyServices.newCompany((i + 1));
             sharePrice[i] = companies[i].getSharePrice();
             stockRoseToday[i] = companies[i].getStockRoseToday();
         }
 
+        // Loop over choices menu until choice == 0
         do {
             System.out.println("-----------------------------------------------");
             System.out.println("1. Display the companies stock prices in ascending order");
@@ -41,9 +46,11 @@ public class Driver {
 
             choice = scanner.nextInt();
 
+            // For each choice, call the companyOperations function which will determine
+            // what action to take
             companyServices.companyOperations(choice, companies, sharePrice, stockRoseToday);
 
-        } while(choice != 0);
+        } while (choice != 0);
 
     }
 }
