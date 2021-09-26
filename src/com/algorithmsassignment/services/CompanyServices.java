@@ -24,22 +24,6 @@ public class CompanyServices {
     // Main calls this function, choice determines what task is to be done
     public void companyOperations(int choice, Company[] companies, double[] sharePrice, boolean[] stockRoseToday) {
 
-        // if (choice == 0) {
-        // System.exit(0);
-        // } else if (choice == 1) {
-        // stockPricesSort(sharePrice, true);
-        // } else if (choice == 2) {
-        // stockPricesSort(sharePrice, false);
-        // } else if (choice == 3) {
-        // numberOfCompaniesWithSameStockStatus(companies, true);
-        // } else if (choice == 4) {
-        // numberOfCompaniesWithSameStockStatus(companies, false);
-        // } else if (choice == 5) {
-        // searchForSpecificStockPrice(sharePrice);
-        // } else {
-        // System.out.println("Use an option between 1 to 5");
-        // }
-
         switch (choice) {
             case 0:
                 System.exit(0);
