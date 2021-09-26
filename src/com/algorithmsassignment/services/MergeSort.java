@@ -1,27 +1,33 @@
 package com.algorithmsassignment.services;
 
 public class MergeSort {
-    public void splitArray(int[] array, int leftElement, int rightElement) {
+    public void splitArray(double[] array, int leftElement, int rightElement) {
 
         if (leftElement < rightElement) {
-            int midElement = (leftElement + rightElement) / 2;
+            int midElement = leftElement + (rightElement - leftElement) / 2;
             splitArray(array, leftElement, midElement);
             splitArray(array, midElement + 1, rightElement);
+
             sortAndMergeArray(array, leftElement, midElement, rightElement);
+
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
         }
 
     }
 
-    public void sortAndMergeArray(int[] array, int leftElement, int midElement, int rightElement) {
+    public void sortAndMergeArray(double[] array, int leftElement, int midElement, int rightElement) {
 
         int n1 = midElement - leftElement + 1; // size of left array
-        int[] leftArray = new int[n1];
+        double[] leftArray = new double[n1];
         for (int i = 0; i < leftArray.length; i++) {
             leftArray[i] = array[leftElement + i];
         }
 
         int n2 = rightElement - midElement; // size of right array
-        int[] rightArray = new int[n2];
+        double[] rightArray = new double[n2];
         for (int j = 0; j < rightArray.length; j++) {
             rightArray[j] = array[midElement + 1 + j];
         }
@@ -31,7 +37,7 @@ public class MergeSort {
         int k = leftElement;
 
         while (i < leftArray.length && j < rightArray.length) {
-            if (leftArray[i] < rightArray[j]) {
+            if (leftArray[i] <= rightArray[j]) {
                 array[k] = leftArray[i];
                 i++;
             } else {
