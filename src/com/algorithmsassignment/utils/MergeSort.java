@@ -7,18 +7,20 @@ public class MergeSort {
     // descending (false)
     // It's value is used as an argument in the sortAndMerge function and has no
     // real effect in the splitArray function
-    public void splitArray(double array[], int left, int right, boolean isAscending) {
+    public void splitArray(double array[], int left, int right, boolean isAscending, boolean toPrint) {
         if (left < right) {
             int mid = left + (right - left) / 2;
 
-            splitArray(array, left, mid, isAscending);
-            splitArray(array, mid + 1, right, isAscending);
+            splitArray(array, left, mid, isAscending, toPrint);
+            splitArray(array, mid + 1, right, isAscending, toPrint);
 
             sortAndMerge(array, left, mid, right, isAscending);
         }
-
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+        if (toPrint) {
+            printArray(array);
+        }
+        else {
+            // DO NOTHING
         }
     }
 
@@ -85,6 +87,12 @@ public class MergeSort {
             array[k] = rightArray[j];
             j++;
             k++;
+        }
+    }
+
+    private void printArray(double[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
         }
     }
 }
