@@ -45,9 +45,9 @@ public class MergeSort {
 
         int k = left;
         // While elements exist in both the arrays
-        while (i < leftArray.length && j < rightArray.length) {
-            // Sort in ascending
-            if (isAscending) {
+        if (isAscending) {
+            while (i < leftArray.length && j < rightArray.length) {
+                // Sort in ascending
                 if (leftArray[i] <= rightArray[j]) {
                     array[k] = leftArray[i];
                     i++;
@@ -55,9 +55,13 @@ public class MergeSort {
                     array[k] = rightArray[j];
                     j++;
                 }
+                k++;
             }
-            // Sort in descending
-            else {
+        }
+        // Sort in descending
+        else {
+            while (i < leftArray.length && j < rightArray.length) {
+                // Sort in ascending
                 if (leftArray[i] >= rightArray[j]) {
                     array[k] = leftArray[i];
                     i++;
@@ -65,8 +69,8 @@ public class MergeSort {
                     array[k] = rightArray[j];
                     j++;
                 }
+                k++;
             }
-            k++;
         }
 
         // Push all elements of left array into main array
