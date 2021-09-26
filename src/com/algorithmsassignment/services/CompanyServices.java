@@ -3,6 +3,8 @@ package com.algorithmsassignment.services;
 import java.util.Scanner;
 
 import com.algorithmsassignment.models.Company;
+import com.algorithmsassignment.utils.LinearSearch;
+import com.algorithmsassignment.utils.MergeSort;
 
 public class CompanyServices {
 
@@ -44,6 +46,8 @@ public class CompanyServices {
                 break;
             default:
                 System.out.println("Use an option between 1 to 5");
+                // Broken because there is a loop in Driver which will switch(choice) again
+                break;
         }
     }
 
