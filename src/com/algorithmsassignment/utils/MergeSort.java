@@ -1,13 +1,13 @@
-package com.algorithmsassignment.services;
+package com.algorithmsassignment.utils;
 
-class MergeSort {
+public class MergeSort {
 
     // Splits array into two equal halves based on the value of mid
     // isAscending decides whether the sorting is to be done in ascending (true) or
     // descending (false)
     // It's value is used as an argument in the sortAndMerge function and has no
     // real effect in the splitArray function
-    void splitArray(double array[], int left, int right, boolean isAscending) {
+    public void splitArray(double array[], int left, int right, boolean isAscending) {
         if (left < right) {
             int mid = left + (right - left) / 2;
 
@@ -25,7 +25,7 @@ class MergeSort {
     // Merges array
     // isAscending decides whether merging is done in ascending (true) or descending
     // (false) order
-    void sortAndMerge(double array[], int left, int mid, int right, boolean isAscending) {
+    private void sortAndMerge(double array[], int left, int mid, int right, boolean isAscending) {
 
         // Create and populate the left and right arrays
         int n1 = mid - left + 1;

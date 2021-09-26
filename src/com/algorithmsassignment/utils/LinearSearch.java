@@ -1,4 +1,4 @@
-package com.algorithmsassignment.services;
+package com.algorithmsassignment.utils;
 
 // Simple linear search
 // Only print if stock value exists or not
@@ -9,8 +9,9 @@ public class LinearSearch {
                 System.out.println("Stock of value " + searchValue + " is present");
                 return;
             } else {
-                System.out.println("Stock of value " + searchValue + " is not present");
+                // DO NOTHING
             }
         }
+        System.out.println("Stock of value " + searchValue + " is not present");
     }
 }
