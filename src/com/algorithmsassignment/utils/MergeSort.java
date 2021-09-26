@@ -1,31 +1,33 @@
-package com.algorithmsassignment.services;
+package com.algorithmsassignment.utils;
 
-class MergeSort {
+public class MergeSort {
 
     // Splits array into two equal halves based on the value of mid
     // isAscending decides whether the sorting is to be done in ascending (true) or
     // descending (false)
     // It's value is used as an argument in the sortAndMerge function and has no
     // real effect in the splitArray function
-    void splitArray(double array[], int left, int right, boolean isAscending) {
+    public void splitArray(double array[], int left, int right, boolean isAscending, boolean toPrint) {
         if (left < right) {
             int mid = left + (right - left) / 2;
 
-            splitArray(array, left, mid, isAscending);
-            splitArray(array, mid + 1, right, isAscending);
+            splitArray(array, left, mid, isAscending, toPrint);
+            splitArray(array, mid + 1, right, isAscending, toPrint);
 
             sortAndMerge(array, left, mid, right, isAscending);
         }
-
-        for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
+        if (toPrint) {
+            printArray(array);
+        }
+        else {
+            // DO NOTHING
         }
     }
 
     // Merges array
     // isAscending decides whether merging is done in ascending (true) or descending
     // (false) order
-    void sortAndMerge(double array[], int left, int mid, int right, boolean isAscending) {
+    private void sortAndMerge(double array[], int left, int mid, int right, boolean isAscending) {
 
         // Create and populate the left and right arrays
         int n1 = mid - left + 1;
@@ -45,9 +47,9 @@ class MergeSort {
 
         int k = left;
         // While elements exist in both the arrays
-        while (i < leftArray.length && j < rightArray.length) {
-            // Sort in ascending
-            if (isAscending) {
+        if (isAscending) {
+            while (i < leftArray.length && j < rightArray.length) {
+                // Sort in ascending
                 if (leftArray[i] <= rightArray[j]) {
                     array[k] = leftArray[i];
                     i++;
@@ -55,9 +57,13 @@ class MergeSort {
                     array[k] = rightArray[j];
                     j++;
                 }
+                k++;
             }
-            // Sort in descending
-            else {
+        }
+        // Sort in descending
+        else {
+            while (i < leftArray.length && j < rightArray.length) {
+                // Sort in ascending
                 if (leftArray[i] >= rightArray[j]) {
                     array[k] = leftArray[i];
                     i++;
@@ -65,8 +71,8 @@ class MergeSort {
                     array[k] = rightArray[j];
                     j++;
                 }
+                k++;
             }
-            k++;
         }
 
         // Push all elements of left array into main array
@@ -81,6 +87,12 @@ class MergeSort {
             array[k] = rightArray[j];
             j++;
             k++;
+        }
+    }
+
+    private void printArray(double[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
         }
     }
 }
