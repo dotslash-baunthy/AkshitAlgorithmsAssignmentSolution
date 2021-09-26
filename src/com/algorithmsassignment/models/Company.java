@@ -8,4 +8,12 @@ public class Company {
         this.sharePrice = sharePrice;
         this.stockRoseToday = stockRoseToday;
     }
+
+    public double getSharePrice() {
+        return this.sharePrice;
+    }
+
+    public boolean getStockRoseToday() {
+        return this.stockRoseToday;
+    }
 }
