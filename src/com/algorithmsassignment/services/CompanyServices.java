@@ -3,7 +3,7 @@ package com.algorithmsassignment.services;
 import java.util.Scanner;
 
 import com.algorithmsassignment.models.Company;
-import com.algorithmsassignment.utils.LinearSearch;
+import com.algorithmsassignment.utils.BinarySearch;
 import com.algorithmsassignment.utils.MergeSort;
 
 public class CompanyServices {
@@ -60,7 +60,7 @@ public class CompanyServices {
         // This was created in case we wanted to preserve the indexes (this is not used
         // but code exists in case an update is to be made)
         double[] sharePriceTemp = sharePrice;
-        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, isAscending);
+        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, isAscending, true);
     }
 
     // Print how many companies had higher stock value compared to yesterday (if
@@ -84,10 +84,13 @@ public class CompanyServices {
     // Search for specific stock value
     // This calls a linearSearch function
     private void searchForSpecificStockPrice(double[] sharePrice) {
-        LinearSearch linearSearch = new LinearSearch();
+        BinarySearch binarySearch = new BinarySearch();
+        MergeSort mergeSort = new MergeSort();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the key value: ");
         double searchValue = scanner.nextDouble();
-        linearSearch.search(sharePrice, searchValue);
+        double[] sharePriceTemp = sharePrice;
+        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, true, false);
+        binarySearch.binarySearch(sharePriceTemp, searchValue);
     }
 }
