@@ -7,20 +7,14 @@ public class MergeSort {
     // descending (false)
     // It's value is used as an argument in the sortAndMerge function and has no
     // real effect in the splitArray function
-    public void splitArray(double array[], int left, int right, boolean isAscending, boolean toPrint) {
+    public void splitArray(double array[], int left, int right, boolean isAscending) {
         if (left < right) {
             int mid = left + (right - left) / 2;
 
-            splitArray(array, left, mid, isAscending, toPrint);
-            splitArray(array, mid + 1, right, isAscending, toPrint);
+            splitArray(array, left, mid, isAscending);
+            splitArray(array, mid + 1, right, isAscending);
 
             sortAndMerge(array, left, mid, right, isAscending);
-        }
-        if (toPrint) {
-            printArray(array);
-        }
-        else {
-            // DO NOTHING
         }
     }
 
@@ -36,10 +30,10 @@ public class MergeSort {
         double leftArray[] = new double[n1];
         double rightArray[] = new double[n2];
 
-        for (int i = 0; i < leftArray.length; i++) {
+        for (int i = 0; i < leftArray.length; ++i) {
             leftArray[i] = array[left + i];
         }
-        for (int j = 0; j < n2; j++) {
+        for (int j = 0; j < rightArray.length; ++j) {
             rightArray[j] = array[mid + 1 + j];
         }
 
@@ -50,7 +44,7 @@ public class MergeSort {
         if (isAscending) {
             while (i < leftArray.length && j < rightArray.length) {
                 // Sort in ascending
-                if (leftArray[i] <= rightArray[j]) {
+                if (Double.compare(leftArray[i], rightArray[j]) <= 0) {
                     array[k] = leftArray[i];
                     i++;
                 } else {
@@ -64,7 +58,7 @@ public class MergeSort {
         else {
             while (i < leftArray.length && j < rightArray.length) {
                 // Sort in ascending
-                if (leftArray[i] >= rightArray[j]) {
+                if (Double.compare(leftArray[i], rightArray[j]) >= 0) {
                     array[k] = leftArray[i];
                     i++;
                 } else {
@@ -83,14 +77,14 @@ public class MergeSort {
         }
 
         // Push all elements of right array into main array
-        while (j < n2) {
+        while (j < rightArray.length) {
             array[k] = rightArray[j];
             j++;
             k++;
         }
     }
 
-    private void printArray(double[] array) {
+    public void printArray(double[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }

@@ -60,7 +60,8 @@ public class CompanyServices {
         // This was created in case we wanted to preserve the indexes (this is not used
         // but code exists in case an update is to be made)
         double[] sharePriceTemp = sharePrice;
-        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, isAscending, true);
+        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, isAscending);
+        mergeSort.printArray(sharePriceTemp);
     }
 
     // Print how many companies had higher stock value compared to yesterday (if
@@ -90,7 +91,7 @@ public class CompanyServices {
         System.out.print("Enter the key value: ");
         double searchValue = scanner.nextDouble();
         double[] sharePriceTemp = sharePrice;
-        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, true, false);
+        mergeSort.splitArray(sharePriceTemp, 0, sharePriceTemp.length - 1, true);
         binarySearch.binarySearch(sharePriceTemp, searchValue);
     }
 }
